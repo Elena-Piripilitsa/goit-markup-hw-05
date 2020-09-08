@@ -11,7 +11,7 @@ html{
 :root{
     --primary-text-color: #212121;
     --secondary-text-color: #757575;
-    --accent-color: #2196F3;
+    --accent-color: #2196f3;
     --primary-background-color: #ffffff;
     --secondary-background-color: #2F303A;
     --accessorial-background-color: #F5F4FA;
@@ -97,6 +97,23 @@ body{
     color: var(--primary-text-color);
 }
 
+.site-nav .link.current{
+    position: relative;
+}
+
+.site-nav .link.current::after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 4px;
+
+    background: #2196F3;
+    border-radius: 2px;
+}
+
 .auth-nav .link{
     color: var(--secondary-text-color);
     display: flex;
@@ -132,39 +149,42 @@ body{
 /* Hero */
 
 .hero{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    max-width: 1600px;
+    height: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+
     background-color: var(--secondary-background-color);
     background-image: linear-gradient(rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)), url(../images/hero.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    text-align: center;
-    height: 600px;
-    max-width: 1600px;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 
 .hero-title{
-    color: var(--title-text-color);
+    margin: 0px 0px 30px;
+
     font-weight: 900;
     font-size: 44px;
     line-height: 1.36;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    margin: 0px 0px 30px;
+    color: var(--title-text-color);
 }
 
 .button{
-    color: var(--title-text-color);
-    background-color: var(--accent-color);
     font-weight: 700;
     font-size: 16px;
     line-height: 1.87;
     letter-spacing: 0.06em;
+    color: var(--title-text-color);
+    background-color: var(--accent-color);
 }
 
 .hero .button{
@@ -203,7 +223,8 @@ body{
 }
 
 .feature-title,
-.footer-title{
+.footer-title,
+.service-item-title{
     font-weight: 700;
     font-size: 14px;
     line-height: 1.14;
@@ -250,8 +271,33 @@ body{
     margin: 0px 0px 50px;
 }
 
+.service-item-title{
+    position: absolute;
+    bottom: 27px;
+
+    margin: 0;
+    width: 100%;
+
+    text-align: center;
+    color: var(--title-text-color);
+}
+
 .service-item .service-img{
     display: block;
+}
+
+.service-item{
+    position: relative;
+}
+
+.service-item::before{
+    position: absolute;
+    bottom: 0;
+
+    content: "";
+    width: 100%;
+    height: 70px;
+    background: rgba(47, 48, 58, 0.8);
 }
 
 /* Секция -наша команда */
@@ -319,12 +365,14 @@ body{
     background: rgba(255, 255, 255, 0.1);
 }
 
-.link-button:hover{
+.link-button:hover,
+.link-button:focus{
     background-color: var(--accent-color);
 }
 
 .footer-link-button .link-icon,
-.link-button:hover .link-icon{
+.link-button:hover .link-icon,
+.link-button:focus .link-icon{
     fill: var(--title-text-color);
 }
 
@@ -367,11 +415,13 @@ padding: 94px 0px;
     fill: var(--background-icon);
 }
 
-.client-card:hover .client-card-icon{
+.client-card:hover .client-card-icon,
+.client-card:focus .client-card-icon{
     fill: var(--accent-color);
 }
 
-.client-card:hover{
+.client-card:hover,
+.client-card:focus{
     border: 1px solid var(--accent-color);
 }
 
@@ -514,12 +564,55 @@ padding: 94px 0px;
 
 .portfolio-card{
     padding: 20px 24px;
-    border-right: 1px solid #eeeeee;
-	border-bottom: 1px solid #eeeeee;
-	border-left: 1px solid #eeeeee;
+    border-right: 1px solid #EEEEEE;
+	border-bottom: 1px solid #EEEEEE;
+	border-left: 1px solid #EEEEEE;
 }
 
 .portfolio-card .title{
     margin-top: 0;
     margin-bottom: 4px;
+}
+
+.portfolio-photo{
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-photo::before{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: "";
+
+    background: rgba(33, 150, 243, 0.9);
+    opacity: 0;
+}
+
+.portfolio-text{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  
+    display: flex;
+    align-items: center;
+    padding-left: 24px;
+    padding-right: 24px;
+    margin: 0;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.56;
+    color: var(--title-text-color);
+    opacity: 0;
+}
+
+.portfolio-item .link:hover ::before,
+.portfolio-item .link:focus ::before,
+.portfolio-item .link:hover .portfolio-text,
+.portfolio-item .link:focus .portfolio-text{
+    opacity: 1;
 }
